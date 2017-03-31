@@ -14,6 +14,7 @@ Source3:	vpnc-disconnect.consolehelper
 Source4:	vpnc.pam
 Source5:	vpnc-helper
 Source6:	vpnc-cleanup
+Source7:	vpnc-tmpfiles.conf
 Patch2:		vpnc-0.5.3-cloexec.patch
 Patch3:		vpnc-0.5.1-dpd.patch
 
@@ -55,9 +56,6 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/man1/pcf2vpnc.1
 chmod 0644 $RPM_BUILD_ROOT%{_mandir}/man8/vpnc.8
 install -m 0600 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/vpnc/default.conf
 mkdir -p $RPM_BUILD_ROOT%{_var}/run/vpnc
-touch $RPM_BUILD_ROOT%{_var}/run/vpnc/pid \
-      $RPM_BUILD_ROOT%{_var}/run/vpnc/defaultroute \
-      $RPM_BUILD_ROOT%{_var}/run/vpnc/resolv.conf-backup
 install -Dp -m 0644 %{SOURCE2} \
     $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/vpnc
 install -Dp -m 0644 %{SOURCE3} \
@@ -75,26 +73,25 @@ install -Dp -m 0644 %{SOURCE6} \
     $RPM_BUILD_ROOT%{_sysconfdir}/event.d/vpnc-cleanup
 rm -f $RPM_BUILD_ROOT%{_datadir}/doc/vpnc/COPYING
 
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/tmpfiles.d
+install -m 0644 %{SOURCE7} $RPM_BUILD_ROOT%{_sysconfdir}/tmpfiles.d/vpnc-tmpfiles.conf
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
 %doc README COPYING pcf2vpnc pcf2vpnc.1
-
 %dir %{_sysconfdir}/vpnc
 %config(noreplace) %{_sysconfdir}/vpnc/vpnc-script
 %config(noreplace) %{_sysconfdir}/vpnc/default.conf
 %config(noreplace) %{_sysconfdir}/event.d/vpnc-cleanup
+%{_sysconfdir}/tmpfiles.d/vpnc-tmpfiles.conf
 %{_sbindir}/vpnc
 %{_bindir}/cisco-decrypt
 %{_sbindir}/vpnc-disconnect
 %{_mandir}/man8/vpnc.*
 %{_mandir}/man1/cisco-decrypt.*
-%dir %{_var}/run/vpnc
-%ghost %verify(not md5 size mtime) %{_var}/run/vpnc/pid
-%ghost %verify(not md5 size mtime) %{_var}/run/vpnc/defaultroute
-%ghost %verify(not md5 size mtime) %{_var}/run/vpnc/resolv.conf-backup
 
 %files consoleuser
 %defattr(-,root,root)

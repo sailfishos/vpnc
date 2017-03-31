@@ -1,7 +1,10 @@
-* Fri Jan 30 2009 Arjan van de Ven <arjan@linux.intel.com> 0.5.3
+* Fir Mar 31 2017 Pekka Vuorela <pekka.vuorela@jolla.com> - 0.5.3-5
+- Use tmpfiles.d for creating /var/run dir. Contributes to JB#37156
+
+* Fri Jan 30 2009 Arjan van de Ven <arjan@linux.intel.com> - 0.5.3-4
 - fix upstart dependency
 
-* Sat Jan 10 2009 Anas Nashif <anas.nashif@intel.com> 0.5.3
+* Sat Jan 10 2009 Anas Nashif <anas.nashif@intel.com> - 0.5.3-3
 - Initial import into Moblin
 
 * Thu Nov 20 2008 Tomas Mraz <tmraz@redhat.com> - 0.5.3-2
