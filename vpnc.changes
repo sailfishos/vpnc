@@ -1,4 +1,4 @@
-* Fir Mar 31 2017 Pekka Vuorela <pekka.vuorela@jolla.com> - 0.5.3-5
+* Fri Mar 31 2017 Pekka Vuorela <pekka.vuorela@jolla.com> - 0.5.3-6
 - Use tmpfiles.d for creating /var/run dir. Contributes to JB#37156
 
 * Fri Jan 30 2009 Arjan van de Ven <arjan@linux.intel.com> - 0.5.3-4
