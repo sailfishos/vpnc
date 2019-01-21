@@ -32,12 +32,20 @@ shared-secret IPSec authentication, 3DES, MD5, and IP tunneling.
 %package consoleuser
 Summary:	Allows console user to run the VPN client directly
 Group:		Applications/Internet
-Requires:	vpnc = %{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	usermode
 
 %description consoleuser
 Allows the console user to run the IPSec VPN client directly without
 switching to the root account.
+
+%package doc
+Summary:   Documentation for %{name}
+Group:     Documentation
+Requires:  %{name} = %{version}-%{release}
+
+%description doc
+Man pages for %{name}.
 
 %prep
 %setup -q
@@ -53,50 +61,56 @@ make install DESTDIR="$RPM_BUILD_ROOT" PREFIX=/usr
 rm -f $RPM_BUILD_ROOT%{_bindir}/pcf2vpnc
 chmod 0644 pcf2vpnc
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/pcf2vpnc.1
-chmod 0644 $RPM_BUILD_ROOT%{_mandir}/man8/vpnc.8
-install -m 0600 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/vpnc/default.conf
-mkdir -p $RPM_BUILD_ROOT%{_var}/run/vpnc
+install -m 0600 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/default.conf
+mkdir -p $RPM_BUILD_ROOT%{_var}/run/%{name}
 install -Dp -m 0644 %{SOURCE2} \
-    $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/vpnc
+    $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/%{name}
 install -Dp -m 0644 %{SOURCE3} \
-    $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/vpnc-disconnect
+    $RPM_BUILD_ROOT%{_sysconfdir}/security/console.apps/%{name}-disconnect
 install -Dp -m 0644 %{SOURCE4} \
-    $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/vpnc
+    $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/%{name}
 install -Dp -m 0644 %{SOURCE4} \
-    $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/vpnc-disconnect
+    $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/%{name}-disconnect
 install -m 0755 %{SOURCE5} \
-    $RPM_BUILD_ROOT%{_sbindir}/vpnc-helper
+    $RPM_BUILD_ROOT%{_sbindir}/%{name}-helper
 mkdir -p $RPM_BUILD_ROOT%{_bindir}
-ln -sf consolehelper $RPM_BUILD_ROOT%{_bindir}/vpnc
-ln -sf consolehelper $RPM_BUILD_ROOT%{_bindir}/vpnc-disconnect
+ln -sf consolehelper $RPM_BUILD_ROOT%{_bindir}/%{name}
+ln -sf consolehelper $RPM_BUILD_ROOT%{_bindir}/%{name}-disconnect
 install -Dp -m 0644 %{SOURCE6} \
-    $RPM_BUILD_ROOT%{_sysconfdir}/event.d/vpnc-cleanup
-rm -f $RPM_BUILD_ROOT%{_datadir}/doc/vpnc/COPYING
+    $RPM_BUILD_ROOT%{_sysconfdir}/event.d/%{name}-cleanup
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/tmpfiles.d
-install -m 0644 %{SOURCE7} $RPM_BUILD_ROOT%{_sysconfdir}/tmpfiles.d/vpnc-tmpfiles.conf
+install -m 0644 %{SOURCE7} $RPM_BUILD_ROOT%{_sysconfdir}/tmpfiles.d/%{name}-tmpfiles.conf
+
+rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
+mkdir -p $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+install -m0644 -t $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version} \
+        ChangeLog README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc README COPYING pcf2vpnc pcf2vpnc.1
-%dir %{_sysconfdir}/vpnc
-%config(noreplace) %{_sysconfdir}/vpnc/vpnc-script
-%config(noreplace) %{_sysconfdir}/vpnc/default.conf
-%config(noreplace) %{_sysconfdir}/event.d/vpnc-cleanup
-%{_sysconfdir}/tmpfiles.d/vpnc-tmpfiles.conf
-%{_sbindir}/vpnc
+%license COPYING
+%dir %{_sysconfdir}/%{name}
+%config(noreplace) %{_sysconfdir}/%{name}/%{name}-script
+%config(noreplace) %{_sysconfdir}/%{name}/default.conf
+%config(noreplace) %{_sysconfdir}/event.d/%{name}-cleanup
+%{_sysconfdir}/tmpfiles.d/%{name}-tmpfiles.conf
+%{_sbindir}/%{name}
 %{_bindir}/cisco-decrypt
-%{_sbindir}/vpnc-disconnect
-%{_mandir}/man8/vpnc.*
-%{_mandir}/man1/cisco-decrypt.*
+%{_sbindir}/%{name}-disconnect
 
 %files consoleuser
 %defattr(-,root,root)
-%config(noreplace) %{_sysconfdir}/security/console.apps/vpnc*
-%config(noreplace) %{_sysconfdir}/pam.d/vpnc*
-%{_bindir}/vpnc*
-%{_sbindir}/vpnc-helper
+%config(noreplace) %{_sysconfdir}/security/console.apps/%{name}*
+%config(noreplace) %{_sysconfdir}/pam.d/%{name}*
+%{_bindir}/%{name}*
+%{_sbindir}/%{name}-helper
 
+%files doc
+%defattr(0644,root,root)
+%{_mandir}/man8/%{name}.*
+%{_mandir}/man1/cisco-decrypt.*
+%{_docdir}/%{name}-%{version}
