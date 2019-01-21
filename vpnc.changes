@@ -61,45 +61,45 @@
 * Thu Sep  7 2006 Tomas Mraz <tmraz@redhat.com> - 0.3.3-11
 - rebuilt for FC6
 
-* Wed Jun  7 2006 Tomas Mraz <tmraz@redhat.com> 0.3.3-9
+* Wed Jun  7 2006 Tomas Mraz <tmraz@redhat.com> - 0.3.3-9
 - drop the -fstack-protector not -f-stack-protector
 
-* Tue May 30 2006 Tomas Mraz <tmraz@redhat.com> 0.3.3-8
+* Tue May 30 2006 Tomas Mraz <tmraz@redhat.com> - 0.3.3-8
 - drop -fstack-protector from x86_64 build (workaround for #172145)
 - make rekeying a little bit better
 
-* Thu Mar  9 2006 Tomas Mraz <tmraz@redhat.com> 0.3.3-7
+* Thu Mar  9 2006 Tomas Mraz <tmraz@redhat.com> - 0.3.3-7
 - add basic rekeying support (the patch includes NAT keepalive support
   by Brian Downing)
 - dropped disconnect patch (solved differently)
 
-* Wed Feb 15 2006 Tomas Mraz <tmraz@redhat.com> 0.3.3-6
+* Wed Feb 15 2006 Tomas Mraz <tmraz@redhat.com> - 0.3.3-6
 - rebuild with new gcc
 
-* Tue Jan 24 2006 Tomas Mraz <tmraz@redhat.com> 0.3.3-5
+* Tue Jan 24 2006 Tomas Mraz <tmraz@redhat.com> - 0.3.3-5
 - send the disconnect packet properly (patch by Laurence Moindrot)
 
-* Thu Sep 22 2005 Tomas Mraz <tmraz@redhat.com> 0.3.3-4
+* Thu Sep 22 2005 Tomas Mraz <tmraz@redhat.com> - 0.3.3-4
 - improve compatibility with some Ciscos
 
-* Wed Jun 15 2005 Tomas Mraz <tmraz@redhat.com> 0.3.3-3
+* Wed Jun 15 2005 Tomas Mraz <tmraz@redhat.com> - 0.3.3-3
 - improve fix_ip_get_output in vpnc-script (#160364)
 
-* Mon May 30 2005 Tomas Mraz <tmraz@redhat.com> 0.3.3-2
+* Mon May 30 2005 Tomas Mraz <tmraz@redhat.com> - 0.3.3-2
 - package /var/run/vpnc and ghost files it can contain (#159015)
 - add /sbin /usr/sbin to the path in vpnc-script (#159099)
 
-* Mon May 16 2005 Tomas Mraz <tmraz@redhat.com> 0.3.3-1
+* Mon May 16 2005 Tomas Mraz <tmraz@redhat.com> - 0.3.3-1
 - new upstream version
 
-* Thu Apr  7 2005 Michael Schwendt <mschwendt[AT]users.sf.net>
+* Thu Apr  7 2005 Michael Schwendt <mschwendt[AT]users.sf.net> - 0.3.2-4
 - rebuilt
 
-* Wed Jan 05 2005 Warren Togami <wtogami@redhat.com> 0.3.2-3
+* Wed Jan 05 2005 Warren Togami <wtogami@redhat.com> - 0.3.2-3
 - Fix 64bit
 
-* Thu Dec 23 2004 Warren Togami <wtogami@redhat.com> 0.3.2-2
+* Thu Dec 23 2004 Warren Togami <wtogami@redhat.com> - 0.3.2-2
 - make PIE (davej)
 
-* Mon Dec 20 2004 Warren Togami <wtogami@redhat.com> 0.3.2-1
+* Mon Dec 20 2004 Warren Togami <wtogami@redhat.com> - 0.3.2-1
 - 0.3.2
