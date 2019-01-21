@@ -1,3 +1,6 @@
+* Wed Jan 16 2019 Tomi Leppänen <tomi.leppanen@jolla.com> - 0.5.3-7
+- [packaging] Add vpnc-doc subpackage. Contributes to JB#24119
+
 * Fri Mar 31 2017 Pekka Vuorela <pekka.vuorela@jolla.com> - 0.5.3-6
 - Use tmpfiles.d for creating /var/run dir. Contributes to JB#37156
 
