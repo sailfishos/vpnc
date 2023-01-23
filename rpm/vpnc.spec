@@ -8,6 +8,7 @@ License:        GPL-2.0-or-later AND BSD-2-Clause
 URL:            https://github.com/streambinder/vpnc
 Source0:        %{name}-%{version}.tar.gz
 BuildRequires:  pkgconfig(libgcrypt) > 1.1.90
+BuildRequires:  pkgconfig(openssl)
 
 %description
 A VPN client compatible with Cisco's EasyVPN equipment.
