@@ -7,6 +7,7 @@ Summary:        IPSec VPN client compatible with Cisco equipment
 License:        GPL-2.0-or-later AND BSD-2-Clause
 URL:            https://github.com/streambinder/vpnc
 Source0:        %{name}-%{version}.tar.gz
+Source1:        generate_version_tag.sh
 BuildRequires:  pkgconfig(libgcrypt) > 1.1.90
 BuildRequires:  pkgconfig(openssl)
 
